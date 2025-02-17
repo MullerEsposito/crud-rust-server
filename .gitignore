@@ -1,0 +1,39 @@
+# Rust build directory
+/target/
+
+# Cargo lock file (uncomment if it's a library)
+# Cargo.lock
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Debug files
+*.pdb
+*.log
+
+# Backup files
+*.bak
+*~
+
+# Binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Rust profiling and documentation
+/target/doc/
+/target/debug/
+/target/release/
+/target/rls/ 

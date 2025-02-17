@@ -1,0 +1,32 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Rust files
+*.rs text diff=rust
+*.toml text diff=toml
+
+# HTML files
+*.html text diff=html
+*.css text diff=css
+*.js text diff=javascript
+
+# Documentation
+*.md text diff=markdown
+LICENSE text
+
+# Git files
+.gitattributes text
+.gitignore text
+
+# Cargo files
+Cargo.toml text
+Cargo.lock text
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.gz binary
+*.zip binary
+*.7z binary 
