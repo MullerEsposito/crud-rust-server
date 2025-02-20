@@ -5,10 +5,13 @@ use crate::types::{ApiRequest, ApiResponse, BoxBody, Database};
 use super::people_routes::people_routes;
 
 pub async fn routes(req: ApiRequest, db: Database) -> ApiResponse {
-  match req.uri().path() {
-      "/people" => people_routes(req, db).await,
-      _ => notfound_response().await,
+  let path = req.uri().path();
+   
+  if path.starts_with("/people") {
+    return people_routes(req, db).await;
   }
+  
+  notfound_response().await  
 }
 
 static NOTFOUND: &[u8] = b"Oops! Not Found";
