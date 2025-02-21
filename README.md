@@ -1,89 +1,86 @@
-# API CRUD com Rust e Hyper
 
-Uma API REST com interface web para gerenciamento de usuários, implementada em Rust usando o framework Hyper.
+# CRUD Rust Server
 
-## 🚀 Funcionalidades
+## 📋 Project Overview
 
-- ✅ Criar usuário
-- 📋 Listar usuários
-- 🔄 Atualizar usuário
-- ❌ Deletar usuário
-- 🌐 Interface web integrada
+This project is a basic CRUD (Create, Read, Update, Delete) server built with Rust. It provides RESTful API endpoints for managing a collection of people. The application structure follows a modular architecture, making it scalable and maintainable.
 
-## 🛠️ Tecnologias
+## 🚀 Features
 
-- Rust
-- Hyper (servidor web)
-- Tokio (async runtime)
-- Serde (serialização)
+- **Create** new person entries
+- **Read** single or multiple person entries
+- **Update** existing person data
+- **Delete** person entries
 
-## 📦 Dependências
+## ⚙️ Technologies Used
 
-```toml
-hyper = { version = "0.14", features = ["full"] }
-tokio = { version = "1.0", features = ["full"] }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-uuid = { version = "1.3", features = ["v4"] }
+- **Rust**: Programming language for system-level development
+- **Actix-web**: Powerful, pragmatic, and extremely fast web framework for Rust
+- **SQLx**: Async SQL crate for Rust for database interactions
+- **PostgreSQL**: Relational database management system
+
+## 📂 Project Structure
+
+```
+├── src
+│   ├── db.rs               # Database connection and setup
+│   ├── main.rs             # Entry point of the application
+│   ├── types.rs            # Custom data types
+│   ├── models              # Data models
+│   │   ├── mod.rs
+│   │   └── person.rs
+│   ├── people              # CRUD functionalities for person entity
+│   │   ├── controllers     # Business logic for endpoints
+│   │   └── services        # Interaction with the database
+│   ├── routes              # Route definitions
+│   │   ├── mod.rs
+│   │   ├── people_routes.rs
+│   │   └── routes.rs
+│
+├── Cargo.toml              # Project configuration
+├── LICENSE                 # License information
+├── .gitignore              # Ignored files for git
+└── README.md               # Project documentation
 ```
 
-## 🚀 Como Executar
+## 🛠️ Installation and Usage
 
-1. Clone o repositório:
-```bash
-git clone https://github.com/seu-usuario/rust-hyper-api
-cd rust-hyper-api
-```
+### Prerequisites
 
-2. Execute o servidor:
-```bash
-cargo run
-```
+- Rust (Install from [rustup.rs](https://rustup.rs/))
 
-3. Acesse:
-- Frontend: http://localhost:3000
-- API: http://localhost:3000/users
+### Setup Steps
 
-## 📡 Endpoints da API
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd crud-rust-server
+   ```
+2. **Run the server**
+   ```bash
+   cargo run
+   ```
 
-- `GET /` - Interface web
-- `POST /users` - Criar usuário
-- `GET /users` - Listar usuários
-- `PUT /users/{id}` - Atualizar usuário
-- `DELETE /users/{id}` - Deletar usuário
+### API Endpoints
 
-## 💡 Exemplos de Uso
+- `POST /people` - Create a new person
+- `GET /people` - Retrieve all persons
+- `GET /people/{id}` - Retrieve a specific person
+- `PUT /people/{id}` - Update a specific person
+- `DELETE /people/{id}` - Delete a specific person
 
-### Criar Usuário
-```bash
-curl -X POST http://localhost:3000/users \
-  -H "Content-Type: application/json" \
-  -d '{"id": 1, "name": "João", "email": "joao@email.com", "password": "senha123"}'
-```
+## 📝 License
 
-### Listar Usuários
-```bash
-curl http://localhost:3000/users
-```
+This project is licensed under the MIT License.
 
-## ⚠️ Notas Importantes
+## 🙌 Contributing
 
-- Projeto para fins educacionais
-- Dados armazenados em memória
-- Senhas em texto plano (não use em produção)
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
-## 📝 Documentação
+## 📧 Contact
 
-Para documentação detalhada, consulte [DOCUMENTATION.md](DOCUMENTATION.md)
+For questions or suggestions:
 
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie sua branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes. 
+- **Name:** Müller Esposito Nunes
+- **Email:** mulleresposito@hotmail.com
+- **LinkedIn:** [linkedin.com/in/mulleresposito](https://linkedin.com/in/mulleresposito)
