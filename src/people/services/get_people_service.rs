@@ -1,7 +1,6 @@
-use crate::types::{Database, Person};
+use crate::types::Person;
 
-pub fn get_people_service(db: Database) -> Vec<Person> {
-  let db = db.lock().unwrap();
-  let people: Vec<Person> = db.values().cloned().collect();
+pub fn get_people_service() -> Vec<Person> {
+  let people: Vec<Person> = Person::get_all();
   people
 }

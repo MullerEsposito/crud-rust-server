@@ -1,11 +1,10 @@
-use crate::types::{Database, Person};
+use crate::types::Person;
 
 use uuid::Uuid;
 
-pub fn get_person_service(db: Database, id: &str) -> Option<Person> {
-  let db = db.lock().unwrap();
+pub fn get_person_service(id: &str) -> Option<Person> {
   let uuid = Uuid::parse_str(id).ok()?;
-  let person = db.get(&uuid).cloned();
+  let person = Person::find_by_id(&uuid);
 
   person
 }

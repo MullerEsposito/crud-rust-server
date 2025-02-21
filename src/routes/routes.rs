@@ -1,14 +1,14 @@
 use http_body_util::{Full, BodyExt};
 use hyper::{body::Bytes, Response, StatusCode};
-use crate::types::{ApiRequest, ApiResponse, BoxBody, Database};
+use crate::types::{ApiRequest, ApiResponse, BoxBody};
 
 use super::people_routes::people_routes;
 
-pub async fn routes(req: ApiRequest, db: Database) -> ApiResponse {
+pub async fn routes(req: ApiRequest) -> ApiResponse {
   let path = req.uri().path();
    
   if path.starts_with("/people") {
-    return people_routes(req, db).await;
+    return people_routes(req).await;
   }
   
   notfound_response().await  

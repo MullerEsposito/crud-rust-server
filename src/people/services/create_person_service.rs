@@ -1,17 +1,10 @@
-use uuid::Uuid;
+use crate::types::{Person, PersonDTO, ServiceError};
 
-use crate::types::{Database, Person, PersonDTO};
+pub fn create_person_service(person_dto: PersonDTO) -> Result<Person, ServiceError> {   
+    let name = person_dto.name.ok_or(ServiceError::InvalidInput("Name is required".to_string()))?;
+    let age = person_dto.age.ok_or(ServiceError::InvalidInput("Age is required".to_string()))?;
 
-pub fn create_person_service(person_dto: PersonDTO, db: Database) -> Person {    
-    let mut person = Person {
-        id: Uuid::new_v4(),
-        name: person_dto.name,
-        age: person_dto.age,
-    };
-    person.id = Uuid::new_v4();
+    let created_person: Person = Person::create(name, age).map_err(|e| ServiceError::InvalidInput(e.to_string()))?;
 
-    let mut db = db.lock().unwrap();
-    db.insert(person.id, person.clone());
-
-    person
+    Ok(created_person)
 }

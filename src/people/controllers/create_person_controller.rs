@@ -1,18 +1,27 @@
 use http_body_util::BodyExt;
 use hyper::{body::Buf, header, Response, StatusCode};
 
-use crate::{people::services::create_person_service::create_person_service, routes::routes::full, types::{ApiRequest, ApiResponse, Database, PersonDTO}};
+use crate::{people::services::create_person_service::create_person_service, routes::routes::full, types::{ApiRequest, ApiResponse, PersonDTO}};
 
-pub async fn create_person_controller(req: ApiRequest, db: Database) -> ApiResponse {
+pub async fn create_person_controller(req: ApiRequest) -> ApiResponse {
   let whole_body = req.collect().await?.aggregate();
   let person_dto: PersonDTO = serde_json::from_reader(whole_body.reader())?;
   
-  let person = create_person_service(person_dto, db.clone());
-
-  let json = serde_json::to_string(&person)?;
-  let response = Response::builder()
+  match create_person_service(person_dto) {
+    Ok(person) => {
+      let json = serde_json::to_string(&person)?;
+      let response = Response::builder()
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "application/json")
         .body(full(json))?;
-  Ok(response)
+      Ok(response)
+    },
+    Err(e) => {
+      let response = Response::builder()
+        .status(StatusCode::BAD_REQUEST)
+        .header(header::CONTENT_TYPE, "application/json")
+        .body(full(serde_json::to_string(&e.to_string())?))?;
+      Ok(response)
+    }
+  }
 }

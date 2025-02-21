@@ -1,11 +1,11 @@
 use hyper::{header, Response, StatusCode};
 
-use crate::{people::services::get_people_service::get_people_service, routes::routes::full, types::{ApiRequest, ApiResponse, Database, Person}};
+use crate::{people::services::get_people_service::get_people_service, routes::routes::full, types::{ApiRequest, ApiResponse, Person}};
 
 static INTERNAL_SERVER_ERROR: &[u8] = b"Internal Server Error";
 
-pub async fn get_people_controller(_req: ApiRequest, db: Database) -> ApiResponse {
-  let people: Vec<Person> = get_people_service(db);
+pub async fn get_people_controller(_req: ApiRequest) -> ApiResponse {
+  let people: Vec<Person> = get_people_service();
   let response = match serde_json::to_string(&people) {
     Ok(json) => Response::builder()
       .header(header::CONTENT_TYPE, "application/json")
