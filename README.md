@@ -15,9 +15,7 @@ This project is a basic CRUD (Create, Read, Update, Delete) server built with Ru
 ## ⚙️ Technologies Used
 
 - **Rust**: Programming language for system-level development
-- **Actix-web**: Powerful, pragmatic, and extremely fast web framework for Rust
-- **SQLx**: Async SQL crate for Rust for database interactions
-- **PostgreSQL**: Relational database management system
+- **Hyper**: Fast and correct low-level HTTP implementation for Rust
 
 ## 📂 Project Structure
 
