@@ -4,6 +4,8 @@ mod people;
 mod utils;
 mod db;
 mod models;
+mod dto;
+mod repositories;
 
 use hyper::server::conn::http1;
 use hyper_util::rt::TokioIo;
