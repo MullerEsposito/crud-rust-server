@@ -1,6 +1,6 @@
 use uuid::Uuid;
 
-use crate::types::{Person, PersonDTO, ServiceError};
+use crate::{dto::person_dto::PersonDTO, models::person::Person, types::ServiceError};
 
 pub fn update_person_service(id: String, person_dto: PersonDTO) -> Result<Person, ServiceError> {
   let uuid = Uuid::parse_str(&id).unwrap();

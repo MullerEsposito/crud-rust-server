@@ -1,7 +1,7 @@
 use hyper::{body::Buf, header, Response, StatusCode};
 use http_body_util::BodyExt;
 
-use crate::{people::services::update_person_service::update_person_service, routes::routes::full, types::{ApiRequest, ApiResponse, Person, PersonDTO}};
+use crate::{dto::person_dto::PersonDTO, models::person::Person, people::services::update_person_service::update_person_service, routes::routes::full, types::{ApiRequest, ApiResponse}};
 
 static INTERNAL_SERVER_ERROR: &[u8] = b"Internal Server Error";
 

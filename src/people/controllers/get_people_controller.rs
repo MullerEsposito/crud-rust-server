@@ -1,6 +1,6 @@
 use hyper::{header, Response, StatusCode};
 
-use crate::{people::services::get_people_service::get_people_service, routes::routes::full, types::{ApiRequest, ApiResponse, Person}};
+use crate::{models::person::Person, people::services::get_people_service::get_people_service, routes::routes::full, types::{ApiRequest, ApiResponse}};
 
 static INTERNAL_SERVER_ERROR: &[u8] = b"Internal Server Error";
 
