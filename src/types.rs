@@ -1,23 +1,11 @@
 use std::fmt;
 use hyper::body::{Bytes, Incoming as IncomingBody};
 use hyper::{Request, Response};
-use serde::{Serialize, Deserialize};
 use std::sync::{Arc, Mutex};
 use std::collections::HashMap;
 use uuid::Uuid;
 
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Person {
-  pub id: Uuid,
-  pub name: String,
-  pub age: u8,
-}
-
-#[derive(Serialize, Deserialize, Clone)]
-pub struct PersonDTO {
-  pub name: Option<String>,
-  pub age: Option<u8>,
-}
+use crate::models::person::Person;
 
 type GenericError = Box<dyn std::error::Error + Send + Sync>;
 type Result<T> = std::result::Result<T, GenericError>;
